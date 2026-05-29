@@ -16,30 +16,36 @@ jobs:
       - name: Send greeting
         run: echo "Hello ${{ inputs.name }}"
 
-  # A → B
+  # a → b
   docker-publish:
     needs: greet
     uses: ./.github/workflows/docker-publish.yml
     with:
       build_tag: "manual-trigger"
 
-  # A → C
+  # a → c
   new-workflow:
     needs: greet
     uses: ./.github/workflows/new.yaml
     with:
       example_input: "manual-trigger"
 
-  # B → D
+  # b → d
   testing:
     needs: docker-publish
     uses: ./.github/workflows/testing.yaml
     with:
       name: "manual-trigger"
 
-  # A → Jira (extra workflow)
+  # e → c
   jira:
     needs: greet
     uses: ./.github/workflows/jira.yaml
     with:
       build_tag: "manual-trigger"
+
+  new-from-jira:
+    needs: jira
+    uses: ./.github/workflows/new.yaml
+    with:
+      example_input: "jira-trigger"
