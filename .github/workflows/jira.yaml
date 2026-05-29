@@ -1,0 +1,27 @@
+name: Jira workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person to greet'
+        default: 'World'
+        required: true
+        type: string
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send greeting
+        run: echo "Hello ${{ inputs.name }}"
+
+
+
+  # E → C
+  call-new:
+    needs: greet
+    uses: ./.github/workflows/new.yaml
+    with:
+      example_input: "manual-trigger"
+
