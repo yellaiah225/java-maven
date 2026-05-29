@@ -1,12 +1,11 @@
 name: Jira workflow
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
-      name:
-        description: 'Person to greet'
-        default: 'World'
-        required: true
+      build_tag:
+        description: "Optional tag for Jira job"
+        required: false
         type: string
 
 jobs:
