@@ -37,20 +37,13 @@ jobs:
     with:
       name: "manual-trigger"
 
-  # e → matrix job
+  # e → c
   jira:
     needs: greet
-    strategy:
-      fail-fast: false
-      max-parallel: 2
-      matrix:
-        env: [dev, staging, prod]
-        region: [us-east, eu-west]
     uses: ./.github/workflows/jira.yaml
     with:
-      build_tag: "${{ matrix.env }}-${{ matrix.region }}"
+      build_tag: "manual-trigger"
 
-  # e → c (after jira matrix completes)
   new-from-jira:
     needs: jira
     uses: ./.github/workflows/new.yaml
