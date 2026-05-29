@@ -7,14 +7,7 @@ on:
         description: "Optional tag for Docker build"
         required: false
         type: string
-  schedule:
-    - cron: '18 18 * * *'
-  push:
-    branches: [ "master" ]
-    tags: [ 'v*.*.*' ]
-  pull_request:
-    branches: [ "master" ]
-
+  
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
