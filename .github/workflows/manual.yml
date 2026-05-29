@@ -40,6 +40,6 @@ jobs:
   # A → Jira (extra workflow)
   jira:
     needs: greet
-    uses: ./.github/workflows/jira.yml
+    uses: ./.github/workflows/jira.yaml
     with:
       build_tag: "manual-trigger"
