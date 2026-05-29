@@ -17,12 +17,12 @@ jobs:
         run: echo "Hello ${{ inputs.name }}"
 
   # A → B
-  call-docker:
+  
+call-docker:
     needs: greet
     uses: ./.github/workflows/docker-publish.yml
     with:
       build_tag: "manual-trigger"
-
   # A → C
   call-new:
     needs: greet
@@ -36,3 +36,9 @@ jobs:
     uses: ./.github/workflows/testing.yaml
     with:
       name: "manual-trigger"
+  call-docker:
+    needs: greet
+    uses: ./.github/workflows/jira.yml
+    with:
+      build_tag: "manual-trigger"
+ 
