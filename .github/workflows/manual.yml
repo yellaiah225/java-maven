@@ -34,4 +34,9 @@ jobs:
   call-docker:
     uses: ./.github/workflows/docker-publish.yml
     with:
-      build_tag: "manual-trigger"    
+      build_tag: "manual-trigger"   
+      
+  call-test:
+    uses: ./.github/workflows/new.yaml
+    with:
+      build_tag: "manual-trigger"
