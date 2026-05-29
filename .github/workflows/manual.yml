@@ -1,5 +1,5 @@
 name: Manual workflow
- 
+
 on:
   workflow_dispatch:
     inputs:
@@ -16,21 +16,21 @@ jobs:
       - name: Send greeting
         run: echo "Hello ${{ inputs.name }}"
 
-  # Step A → B
+  # A → B
   call-docker:
     needs: greet
     uses: ./.github/workflows/docker-publish.yml
     with:
       build_tag: "manual-trigger"
 
-  # Step A → C
+  # A → C
   call-new:
     needs: greet
     uses: ./.github/workflows/new.yaml
     with:
       example_input: "manual-trigger"
 
-  # Step B → D
+  # B → D
   call-test:
     needs: call-docker
     uses: ./.github/workflows/testing.yaml
