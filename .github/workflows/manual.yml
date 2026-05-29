@@ -30,3 +30,8 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
+  
+  call-docker:
+    uses: ./.github/workflows/docker-publish.yml
+    with:
+      build_tag: "manual-trigger"    
