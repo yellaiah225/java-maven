@@ -7,7 +7,14 @@ on:
         description: "Optional tag for Docker build"
         required: false
         type: string
-  
+  push:
+    branches: [ "master" ]
+    tags: [ 'v*.*.*' ]
+  schedule:
+    - cron: '18 18 * * *'
+  pull_request:
+    branches: [ "master" ]
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
@@ -18,4 +25,5 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      # … rest of your Docker build steps …
+      - name: Build Docker image
+        run: echo "Building Docker image with tag ${{ inputs.build_tag }}"
